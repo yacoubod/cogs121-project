@@ -14,7 +14,8 @@
 
 4. Platform where photographers can crowdsource and search for local shooting spots
 
-![](http://imgur.com/a/iygg9)
+![](http://imgur.com/HvbosEf)
+http://imgur.com/a/iygg9
 
 5.
 
