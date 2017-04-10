@@ -2,11 +2,11 @@
 
 1. Platform for identifying cheap travel opportunities in the near future
 
-![](https://octodex.github.com/images/yaktocat.png)
+![](http://i.imgur.com/JYKQVdy.png)
 
 2. Visualization of github commits around the world, sorting ability to see where people are working on projects similar to yours 
 
-![](https://octodex.github.com/images/yaktocat.png)
+![](http://i.imgur.com/zxbu18s.png)
 
 3.
 
