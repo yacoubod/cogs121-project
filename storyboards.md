@@ -18,13 +18,15 @@ http://imgur.com/a/XG9Z4
 ![](http://i.imgur.com/HvbosEf.jpg)
 http://imgur.com/a/iygg9
 
-5.
+5. 360 Photos documenting and sharing based on geo-location
 
-![](https://octodex.github.com/images/yaktocat.png)
+![](http://imgur.com/zFrCgPd)
+http://imgur.com/zFrCgPd
 
-6.
+6. Event finder for UCSD campus
 
-![](https://octodex.github.com/images/yaktocat.png)
+![](http://imgur.com/MzuXsFj)
+http://imgur.com/MzuXsFj
 
 7.
 
