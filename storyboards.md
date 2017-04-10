@@ -10,7 +10,7 @@
 
 3. Map where people can contribute and look for "hidden"/"secret" spots to explore that may be hard to find location and information about otherwise (places like Ho Chi Minh trail, Old LA Zoo, Big C Swing overlooking Berkeley)
 
-![](http://i.imgur.com/Q8p5cYl.jpg)
+![](http://i.imgur.com/J748AiZ.jpg)
 
 http://imgur.com/a/XG9Z4
 
