@@ -11,3 +11,9 @@
 5. Looks for trails to walk around on campus.
 
 6. Visualization of github commits around the world, sorting ability to see where people are working on projects similar to yours
+
+7. Map of locations to recycle/properyly dispose of hazardous material and electronics like batteries, paint, medications, etc.
+
+8. Integrating Google Maps and Yelp AP to simutaneously place relevant Yelp bookmarks on your route
+
+9. Crowdsource fun "secret"/"hidden" places to visit that may be hard to find on Google/Google maps
