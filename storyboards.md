@@ -20,13 +20,13 @@ http://imgur.com/a/iygg9
 
 5. 360 Photos documenting and sharing based on geo-location
 
-![](http://imgur.com/zFrCgPd)
-http://imgur.com/zFrCgPd
+![](http://i.imgur.com/zFrCgPd.png)
+http://i.imgur.com/zFrCgPd.png
 
 6. Event finder for UCSD campus
 
-![](http://imgur.com/MzuXsFj)
-http://imgur.com/MzuXsFj
+![](http://i.imgur.com/MzuXsFj.png)
+http://i.imgur.com/MzuXsFj.png
 
 7.
 
