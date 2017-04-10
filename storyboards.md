@@ -30,9 +30,9 @@ http://i.imgur.com/MzuXsFj.png
 
 7. Interface for choosing locations to explore in CAVEKiosk exhibit in Geisel.
 
-http://i.imgur.com/dFuREW3.jpg
+![](http://i.imgur.com/dFuREW3.jpg)
 
 8. Looks for trails to walk around on campus.
 
-http://i.imgur.com/bR6rVxz.jpg
+![](http://i.imgur.com/bR6rVxz.jpg)
 
