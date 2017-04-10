@@ -11,11 +11,13 @@
 3. Map where people can contribute and look for "hidden"/"secret" spots to explore that may be hard to find location and information about otherwise (places like Ho Chi Minh trail, Old LA Zoo, Big C Swing overlooking Berkeley)
 
 ![](http://i.imgur.com/Q8p5cYl.jpg)
+
 http://imgur.com/a/XG9Z4
 
 4. Platform where photographers can crowdsource and search for local shooting spots
 
 ![](http://i.imgur.com/HvbosEf.jpg)
+
 http://imgur.com/a/iygg9
 
 5. 360 Photos documenting and sharing based on geo-location
