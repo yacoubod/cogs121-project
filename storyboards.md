@@ -8,13 +8,13 @@
 
 ![](http://i.imgur.com/zxbu18s.png)
 
-3.
+3. Map where people can contribute and look for "hidden"/"secret" spots to explore that may be hard to find location and information about otherwise (places like Ho Chi Minh trail, Old LA Zoo, Big C Swing overlooking Berkeley)
 
-![](https://octodex.github.com/images/yaktocat.png)
+![](http://imgur.com/a/XG9Z4)
 
-4.
+4. Platform where photographers can crowdsource and search for local shooting spots
 
-![](https://octodex.github.com/images/yaktocat.png)
+![](http://imgur.com/a/iygg9)
 
 5.
 
