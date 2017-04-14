@@ -13,7 +13,9 @@ Many people asked what makes this idea novel, so we looked at a lot of the compe
 In sum, our feedback helped us solidify a unique value prop by focusing on immediate results over customized queries.
 
 **Features:**
-(what we want to see as features in the project)
+Similar products that we looked at included Google Flights and SkyScanner. We liked the interface of Google Flights where it displayed destinations and prices given a departing airport on a world map. However, Google Maps required a specific date input to search for flights, making it hard to search for when the cheapest departing date to anywhere would be. SkyScanner had a "Everywhere" option available for their destination input and allowed searching by month rather than a specific day. The search results were returned in a list form ordered by country. When a country's tab was clicked, then a dropdown would display the cities available. 
+
+Rather than a list interface like this, we'd feature a map interface where people can see the cheapest flights given only a departing airport. This visualization will also allow people to see where exactly in the world the destination is located, which gives information about how far the destination is relative to the user's location, what region of the world it's in, etc. Our primary users will be college students and other people who share flexible schedules, low funds, and an itch to explore the world.
 
 **Work Flow:**
 We all plan on touching all parts of the code. We will likely set weekly goals in 'scrum'-like meetings and divide the work up then based on availability and skillsets for each given set of tasks at hand.
