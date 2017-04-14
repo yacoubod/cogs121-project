@@ -16,4 +16,4 @@ In sum, our feedback helped us solidify a unique value prop by focusing on immed
 (what we want to see as features in the project)
 
 **Work Flow:**
-(how we intend to split up the work to complete the project)
+We all plan on touching all parts of the code. We will likely set weekly goals in 'scrum'-like meetings and divide the work up then based on availability and skillsets for each given set of tasks at hand.
