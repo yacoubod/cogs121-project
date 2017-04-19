@@ -2,9 +2,9 @@
 
 **Greg**
 
-![](http://i.imgur.com/XOsCld8)
+![](http://i.imgur.com/XOsCld8.jpg)
 
-![](http://i.imgur.com/eWbVYtO)
+![](http://i.imgur.com/eWbVYtO.jpg)
 
 
 The idea is still build the interface completely off of the map. Using the map to visualize the possible destinations connected to the area of departure. Since the app is meant to be used to find cheap flights, the flights are color coded according to their price as determined by the slider on the main bottom bar. Additional filters can be overlayed onto the map, underneath the flights to help visualize information about the destinations (rating system of the city/area, temperature, cost of living, hotels, etc). A list form of the destinations is also available but only emerges once the user begins to interact with the locations on the map.
