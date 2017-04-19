@@ -17,3 +17,9 @@ The idea is still build the interface completely off of the map. Using the map t
 This prototype demonstrates what the app would display after a search has been done. The dots represent available destinations, and when tapped, show details about the destination and price for a round trip there.
 
 Idea for future iteration: add price slider, show prices above dots
+
+**Yacoub:**
+
+![](http://i.imgur.com/ejnlafP.jpg)
+
+My prototype shows that people can find trips that match their desired criteria such as travel duration, price, and area. Once a user has selected a trip from the list, they see a map view of where their travel, lodging, and activities will be located.
