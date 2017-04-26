@@ -20,9 +20,13 @@ Continued work on the UI elements and progression of the user from first navigat
 ![](http://i.imgur.com/qIFqDtQ.jpg)
 
 Considerations from the prototypes (to-do list):
+
 Show how the user who signs into an existing account progresses
+
 How a user can view all their saved trips
+
 Expand on the visualization of the trips (embedding price and date information into their articulation)
+
 How the interactions with the individual trip locations will work (pop-ups, sidebars, etc)
 
 **Screenshot(s) of the core map functionality so far + description**
