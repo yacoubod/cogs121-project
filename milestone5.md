@@ -31,3 +31,4 @@ Expand on the visualization of the trips (embedding price and date information i
 How the interactions with the individual trip locations will work (pop-ups, sidebars, etc)
 
 **Screenshot(s) of the core map functionality so far + description**
+![](http://i.imgur.com/1ku4p2j.png)
