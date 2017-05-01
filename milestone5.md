@@ -7,6 +7,7 @@ _Sandra:_
 Added code for geolocation within Google Maps, but need to integrate it with Ryan's marker implementation next. Researched flight and airport locating APIs-- decided on SkyScanner for flight information and Google Places for locating nearest airports.
 
 _Yacoub:_
+Set up an AWS app for us to deploy our project.
 
 _Greg:_
 Continued work on the UI elements and progression of the user from first navigating to the site up to looking for flights.
