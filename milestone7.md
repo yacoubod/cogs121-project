@@ -6,5 +6,7 @@
 
 *Greg:*
 
+Added the flights paths to the map as well as created the JavaScript that will display the flights taken from the API once implemented.
+
 **Screenshot of app:**
-![](http://imgur.com/56dr9cq.png)
+![]([http://i.imgur.com/QARj0i6.png)
