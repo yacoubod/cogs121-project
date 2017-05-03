@@ -7,4 +7,4 @@
 *Greg:*
 
 **Screenshot of app:**
-![](http://imgur.com/56dr9cq)
+![](http://imgur.com/56dr9cq.png)
