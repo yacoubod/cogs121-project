@@ -2,11 +2,9 @@
 
 *Yacoub:*
 
-*Sandra:*
+*Sandra:* Wrote JavaScript code to implement the SkyScanner API, which will give us the flight information needed to display available flights for the user
 
-*Greg:*
-
-Added the flights paths to the map as well as created the JavaScript that will display the flights taken from the API once implemented.
+*Greg:* Added the flights paths to the map as well as created the JavaScript that will display the flights taken from the API once implemented.
 
 **Screenshot of app:**
 ![](http://i.imgur.com/zYJuDxG.png)
