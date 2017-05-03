@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- FontAwesome CSS -->
+	   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .search {
+        position: absolute;
+        z-index:1;
+        background: white;
+        width: 80%;
+        margin-left: 10%;
+        margin-top: 10px;
+        padding: 10px 10%;
+        /*box-shadow: 3px 3px #888888;*/
+        border: 2px solid #888888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="search container">
+      <div class="row justify-content-center">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          Departing from <button class="btn btn-default" type="submit">SAN</button>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          Trips under
+          <div class="dropdown" style="display:inline-block;">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">$500
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="#">$800</a></li>
+              <li><a href="#">$1500</a></li>
+              <li><a href="#">$2100+</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          Leaving within
+          <div class="dropdown" style="display:inline-block;">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">1 week
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="#">2 weeks</a></li>
+              <li><a href="#">1 month</a></li>
+              <li><a href="#">2 months+</a></li>
+            </ul>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 2,
+          center: new google.maps.LatLng(2.8,-187.3),
+          mapTypeId: 'terrain'
+        });
+
+        // Create a <script> tag and set the USGS URL as the source.
+        var script = document.createElement('script');
+        // This example uses a local copy of the GeoJSON stored at
+        // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+        script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+        document.getElementsByTagName('head')[0].appendChild(script);
+      }
+
+      // Loop through the results array and place a marker for each
+      // set of coordinates.
+      window.eqfeed_callback = function(results) {
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjVZNsDc_7NkRipjobreGbkhw8Dej6ETk&callback=initMap">
+    </script>
+    <!-- JQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>
