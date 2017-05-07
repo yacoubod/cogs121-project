@@ -171,6 +171,8 @@
         script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
         document.getElementsByTagName('head')[0].appendChild(script);
 
+        var flightArray = new google.maps.Polyline();
+
         for (var i=0; i<flightDest.length; i++) {
           var flightPlanCoordinates = [
             {lat: depPortLat, lng: depPortLng},
@@ -185,9 +187,16 @@
           });
 
           flightPath.setMap(map);
+          flightArray[i] = flightPath;
         }
 
+        flightPath.addListener('mouseover', function(){
+            this.setOptions({strokeColor:'#00000'});
+            console.log("hover over line");
+        });
       }
+
+
 
       // Loop through the results array and place a marker for each
       // set of coordinates.
