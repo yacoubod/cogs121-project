@@ -171,7 +171,7 @@
         script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
         document.getElementsByTagName('head')[0].appendChild(script);
 
-        var flightArray = new google.maps.Polyline();
+        var flightArray = [];
 
         for (var i=0; i<flightDest.length; i++) {
           var flightPlanCoordinates = [
@@ -180,20 +180,32 @@
 
           var flightPath = new google.maps.Polyline({
             path: flightPlanCoordinates,
-            geodesic: true,
+            geodesic: true, //line or curves!!
             strokeColor: '#FF0000',
             strokeOpacity: 1.0,
             strokeWeight: 2
           });
 
           flightPath.setMap(map);
-          flightArray[i] = flightPath;
+          flightArray.push(flightPath);
         }
+        console.log(flightArray);
 
-        flightPath.addListener('mouseover', function(){
-            this.setOptions({strokeColor:'#00000'});
-            console.log("hover over line");
-        });
+        for (k in flightArray) {
+          console.log(k);
+          flightArray[k].addListener('mouseover', function(){
+            for (var j=0; j<flightArray.length; j++) {
+              flightArray[j].setOptions({strokeOpacity:0.2});
+              this.setOptions({strokeOpacity:1.0});
+            }
+          });
+          flightArray[k].addListener('mouseout', function(){
+            for (var i=0; i<flightArray.length; i++) {
+              flightArray[i].setOptions({strokeOpacity:1.0});
+              this.setOptions({strokeOpacity:1.0});
+            }
+          });
+        }
       }
 
 
