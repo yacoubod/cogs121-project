@@ -27,11 +27,13 @@
         padding: 10px 10%;
         box-shadow: 2px 2px 3px #888888;
         border: 1px solid #c9cbce;
+        display: none;
       }
     </style>
   </head>
   <body>
-    <div class="search container">
+    <!-- Search bar at the top of the page, hidden at first -->
+    <div class="search container" id="searchBox">
       <div class="row justify-content-center">
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
           Departing from <button class="btn btn-default" type="submit">SAN</button>
@@ -63,9 +65,145 @@
         </div>
       </div>
     </div>
+
+<!-- Log In window that displays when the page loads -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <div id="modalHeader">
+          <h3 id="popTitle">Welcome, let's Wanderlust!</h3>
+        </div>
+        <div class="LogSign" id="modalSignIn" style="width: 235px; display: table-cell; padding: 10px">
+          <div id="forms" style="text-align: center">
+            <form><input type="text" value="User Name" class="formInput"></form>
+            <form><input type="text" value="Password" class="formInput"></form>
+          </div>
+          <button class="logInBtn" style="width: 100%" onclick="hideModal(1)">Log In</button>
+        </div>
+        <div class="LogSign" id="modalNewAcc" style="width: 235px; display: table-cell; padding: 10px">
+          <div id="forms" style="text-align: center; width:100%">
+            <form><input type="text" value="First Name" class="formInput"></form>
+            <form><input type="text" value="Last Name" class="formInput"></form>
+            <form><input type="text" value="Email" class="formInput"></form>
+            <form><input type="text" value="User Name" class="formInput"></form>
+           <form><input type="text" value="Password" class="formInput"></form>
+          </div>
+          <button class="logInBtn" style="width: 100%" onclick="hideModal(1)">Create Account</button>
+        </div>
+      </div>
+    </div>
+    <!-- Form to fill out before flights can be shwon -->
+    <div id="myModal2" class="modal2" style="display: none">
+      <div class="modal-content">
+        <div id="modalHeader">
+          <h3 id="popTitle">Plan your flight.</h3>
+        </div>
+        <div id="forms" style="text-align: center; width:100%">
+          <div id="planner budget">
+            <form><input type="text" value="Budget"></form>
+          </div>
+          <div id="planner date">
+            <form action="/action_page.php">Depart:<input type="date"></form>
+            <form action="/action_page.php">Return:<input type="date"></form>
+          </div>
+        </div>
+        <button class="planner submit" onclick="hideModal(2)" style="width: 100%">Show me trips!</button>
+      </div>
+
+    </div>
+    <script>
+      var searchCon = document.getElementsByClassName("search container"); 
+      // Get the modal
+      var modal = document.getElementById('myModal');
+      var modal2 = document.getElementById('myModal2');
+      var critCont = document.getElementById('searchBox');
+
+       window.onload = function() { //displays the first pop up on the page loading
+        modal.style.display = "block";
+        console.log("page load, showing modal 1");
+      };
+
+      hideModal = function(type) { //toggles the pop ups
+        console.log("button click");
+        if (type == 1) {
+          modal.style.display = "none";
+          modal2.style.display = "block";
+        } else if (type == 2) {
+          modal2.style.display = "none";
+          critCont.style.display = "block";
+          //need to pass the data from the form to populate the header, pull flight information from the api, generate the list, and call the function to populate additional info other the places
+          //drawLine();
+
+        }
+      };
+
+
+    </script>
+    <style>
+      /* The Modal (background) */
+      .modal, .modal2 {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: #f0eceb; /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+
+      /* Modal Content/Box */
+      .modal-content {
+          background-color: #f0eceb;
+          margin: 15% auto; /* 15% from the top and centered */
+          padding: 20px;
+          border: 1px solid #888;
+          width: 40%; /* Could be more or less, depending on screen size */
+      }
+      
+      .LogSign{
+        /**border: 1px solid #283018;**/
+      }
+
+      .formInput {
+        width: 100%;
+        color: #cecece;
+      }
+
+      #popTitle {
+        font-size: 35px;
+        width: 100%; 
+        height: 100%; 
+        text-align: center;
+      }
+    </style>
+
+
+
+<!-- Draws the lines for the flight -->
     <div id="map"></div>
     <script>
       var map;
+      var depPortLat;
+      var depPortLng;
+
+      depPortLat = 32.729;
+      depPortLng = -117.195; //TEMP SAN lat, lng
+
+      var flightDest; //TEMP random destinations
+      flightDest = [
+          {lat: 37.772, lng: -122.214},
+          {lat: 21.291, lng: -157.821},
+          {lat: -18.142, lng: 178.431},
+          {lat: -27.467, lng: 153.027},
+          {lat: -40.762021, lng: -62.578080},
+          {lat: 39.626641, lng: 2.877364},
+          {lat: 59.614856, lng: 6.217208},
+          {lat: 39.355332, lng: 125.748454},
+          {lat: 63.775087, lng: -18.392168}
+        ];
+      
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 2,
@@ -73,26 +211,56 @@
           mapTypeId: 'terrain'
         });
 
+        var bounds = new google.maps.LatLngBounds(); //finds center of all polylines
+          for (var i = 0; i < flightDest.length; i++) {
+          bounds.extend(flightDest[i]);
+        }
+        map.fitBounds(bounds); //centers map to the lines
+
         // Create a <script> tag and set the USGS URL as the source.
         var script = document.createElement('script');
         // This example uses a local copy of the GeoJSON stored at
         // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
         script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
         document.getElementsByTagName('head')[0].appendChild(script);
-      }
 
-      // Loop through the results array and place a marker for each
-      // set of coordinates.
-      window.eqfeed_callback = function(results) {
-        for (var i = 0; i < results.features.length; i++) {
-          var coords = results.features[i].geometry.coordinates;
-          var latLng = new google.maps.LatLng(coords[1],coords[0]);
-          var marker = new google.maps.Marker({
-            position: latLng,
-            map: map
+        var flightArray = [];
+
+        //function drawLine() { //function to call line drawing after user input is taken
+        for (var i=0; i<flightDest.length; i++) {
+          var flightPlanCoordinates = [
+            {lat: depPortLat, lng: depPortLng},
+            {lat: flightDest[i].lat, lng: flightDest[i].lng} ];
+
+          var flightPath = new google.maps.Polyline({
+            path: flightPlanCoordinates,
+            geodesic: true, //line or curves!!
+            strokeColor: '#283018',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+          });
+
+          flightPath.setMap(map);
+          flightArray.push(flightPath);
+        }
+
+        for (k in flightArray) { //changes opacity on all lines but the hovered one
+          flightArray[k].addListener('mouseover', function(){
+            for (var j=0; j<flightArray.length; j++) {
+              flightArray[j].setOptions({strokeOpacity:0.2});
+              this.setOptions({strokeOpacity:1.0});
+            }
+          });
+          flightArray[k].addListener('mouseout', function(){
+            for (var i=0; i<flightArray.length; i++) {
+              flightArray[i].setOptions({strokeOpacity:1.0});
+              this.setOptions({strokeOpacity:1.0});
+            }
           });
         }
-      }
+      //}
+    }
+
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjVZNsDc_7NkRipjobreGbkhw8Dej6ETk&callback=initMap">
