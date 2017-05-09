@@ -111,30 +111,31 @@
 
     </div>
     <script>
-      var searchCon = document.getElementsByClassName("search container"); 
-      // Get the modal
-      var modal = document.getElementById('myModal');
-      var modal2 = document.getElementById('myModal2');
-      var critCont = document.getElementById('searchBox');
+      // var searchCon = document.getElementsByClassName("search container"); 
+      // // Get the modal
+      // var modal = document.getElementById('myModal');
+      // var modal2 = document.getElementById('myModal2');
+      // var critCont = document.getElementById('searchBox');
 
-       window.onload = function() { //displays the first pop up on the page loading
-        modal.style.display = "block";
-        console.log("page load, showing modal 1");
-      };
+      //  window.onload = function() { //displays the first pop up on the page loading
+      //   modal.style.display = "block";
+      //   console.log("page load, showing modal 1");
+      // };
 
-      hideModal = function(type) { //toggles the pop ups
-        console.log("button click");
-        if (type == 1) {
-          modal.style.display = "none";
-          modal2.style.display = "block";
-        } else if (type == 2) {
-          modal2.style.display = "none";
-          critCont.style.display = "block";
-          //need to pass the data from the form to populate the header, pull flight information from the api, generate the list, and call the function to populate additional info other the places
-          //drawLine();
+      // hideModal = function(type) { //toggles the pop ups
+      //   console.log("button click");
+      //   if (type == 1) {
+      //     modal.style.display = "none";
+      //     modal2.style.display = "block";
+      //   } else if (type == 2) {
+      //     modal2.style.display = "none";
+      //     critCont.style.display = "block";
+      //     modal2.drawMap();
+      //     //need to pass the data from the form to populate the header, pull flight information from the api, generate the list, and call the function to populate additional info other the places
+      //     //drawLine();
 
-        }
-      };
+      //   }
+      // };
 
 
     </script>
@@ -184,6 +185,7 @@
 <!-- Draws the lines for the flight -->
     <div id="map"></div>
     <script>
+
       var map;
       var depPortLat;
       var depPortLng;
@@ -226,7 +228,14 @@
 
         var flightArray = [];
 
-        //function drawLine() { //function to call line drawing after user input is taken
+        var lineSymbol = {
+          path: 'M 0,-1 0,1',
+          strokeOpacity: 1,
+          scale: 4
+        };
+        // we can make custom sybmols and place them anywhere on the path of the polyline
+
+        function drawMap() { //function to call line drawing after user input is taken
         for (var i=0; i<flightDest.length; i++) {
           var flightPlanCoordinates = [
             {lat: depPortLat, lng: depPortLng},
@@ -234,9 +243,14 @@
 
           var flightPath = new google.maps.Polyline({
             path: flightPlanCoordinates,
-            geodesic: true, //line or curves!!
+            geodesic: false, //line or curves!!
             strokeColor: '#283018',
-            strokeOpacity: 1.0,
+            strokeOpacity: 0.9,
+            //icons: [{    //add the dashed line effect
+            //   icon: lineSymbol,
+            //   offset: '0',
+            //   repeat: '20px'
+            // }],
             strokeWeight: 2
           });
 
@@ -258,7 +272,47 @@
             }
           });
         }
-      //}
+
+      var markerArray= []; //object of all the markers
+      for (var i=0; i<flightDest.length; i++) {
+        var display = "Marker at coords: " + flightDest[i].lat + ", " + flightDest[i].lng;
+        var marker = new google.maps.Marker({
+          position: flightDest[i],
+          map: map,
+          title: display,
+          animation: google.maps.Animation.DROP
+        });
+        markerArray.push(marker);
+        marker.setMap(map);
+      }
+    }
+
+    //Calls the UI elements at the start of the page
+    var searchCon = document.getElementsByClassName("search container"); 
+      // Get the modal
+      var modal = document.getElementById('myModal');
+      var modal2 = document.getElementById('myModal2');
+      var critCont = document.getElementById('searchBox');
+
+       window.onload = function() { //displays the first pop up on the page loading
+        modal.style.display = "block";
+        console.log("page load, showing modal 1");
+      };
+
+      hideModal = function(type) { //toggles the pop ups
+        console.log("button click");
+        if (type == 1) {
+          modal.style.display = "none";
+          modal2.style.display = "block";
+        } else if (type == 2) {
+          modal2.style.display = "none";
+          critCont.style.display = "block";
+          drawMap();
+          //need to pass the data from the form to populate the header, pull flight information from the api, generate the list, and call the function to populate additional info other the places
+          //drawLine();
+
+        }
+      };
     }
 
     </script>
