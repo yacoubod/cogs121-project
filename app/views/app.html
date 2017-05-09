@@ -66,6 +66,68 @@
       </div>
     </div>
 
+    <div class="resultsbar">
+      <div class="resultscontent">
+        <h3>Result List</h3> 
+        <div class="result">
+          <h5>Result Name</h5>
+          <p>Some text about that result</p>
+        </div>
+        <!-- TEMP until we switch to handlebars -->
+        <div class="result"> 
+          <h5>Result Name</h5>
+          <p>Some text about that result</p>
+        </div>
+        <div class="result">
+          <h5>Result Name</h5>
+          <p>Some text about that result</p>
+        </div>
+        <div class="result">
+          <h5>Result Name</h5>
+          <p>Some text about that result</p>
+        </div>
+        <div class="result">
+          <h5>Result Name</h5>
+          <p>Some text about that result</p>
+        </div>
+        <div class="result">
+          <h5>Result Name</h5>
+          <p>Some text about that result</p>
+        </div>
+        <div class="result">
+          <h5>Result Name</h5>
+          <p>Some text about that result</p>
+        </div>
+        <!-- End the temp section -->
+      </div>
+    </div>
+
+    <style>
+      .resultsbar{
+        position: absolute;
+        z-index:1;
+        background: white;
+        width: 20%;
+        height: 70%;
+        margin-left: 80%;
+        margin-top: 75px;
+        box-shadow: 2px 2px 3px #888888;
+        border: 1px solid #c9cbce;
+        overflow: auto;
+      }
+
+      .resultscontent {
+        padding: 5px;
+      }
+
+      .result {
+        padding: 5px;
+        border: 1px dashed;
+        margin-top: 5px;
+      }
+
+    </style>
+
 <!-- Log In window that displays when the page loads -->
     <div id="myModal" class="modal">
       <div class="modal-content">
@@ -110,35 +172,6 @@
       </div>
 
     </div>
-    <script>
-      // var searchCon = document.getElementsByClassName("search container"); 
-      // // Get the modal
-      // var modal = document.getElementById('myModal');
-      // var modal2 = document.getElementById('myModal2');
-      // var critCont = document.getElementById('searchBox');
-
-      //  window.onload = function() { //displays the first pop up on the page loading
-      //   modal.style.display = "block";
-      //   console.log("page load, showing modal 1");
-      // };
-
-      // hideModal = function(type) { //toggles the pop ups
-      //   console.log("button click");
-      //   if (type == 1) {
-      //     modal.style.display = "none";
-      //     modal2.style.display = "block";
-      //   } else if (type == 2) {
-      //     modal2.style.display = "none";
-      //     critCont.style.display = "block";
-      //     modal2.drawMap();
-      //     //need to pass the data from the form to populate the header, pull flight information from the api, generate the list, and call the function to populate additional info other the places
-      //     //drawLine();
-
-      //   }
-      // };
-
-
-    </script>
     <style>
       /* The Modal (background) */
       .modal, .modal2 {
@@ -215,8 +248,10 @@
 
         var bounds = new google.maps.LatLngBounds(); //finds center of all polylines
           for (var i = 0; i < flightDest.length; i++) {
-          bounds.extend(flightDest[i]);
+            var tempCoord = new google.maps.LatLng(flightDest[i].lat+10,flightDest[i].lng+40); //offset the map to account for search bar
+          bounds.extend(tempCoord);
         }
+        //console.log(bounds);
         map.fitBounds(bounds); //centers map to the lines
 
         // Create a <script> tag and set the USGS URL as the source.
@@ -243,7 +278,7 @@
 
           var flightPath = new google.maps.Polyline({
             path: flightPlanCoordinates,
-            geodesic: false, //line or curves!!
+            geodesic: true, //line or curves!!
             strokeColor: '#283018',
             strokeOpacity: 0.9,
             //icons: [{    //add the dashed line effect
