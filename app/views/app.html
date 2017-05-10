@@ -190,7 +190,7 @@
         z-index:1;
         background: white;
         width: 20%;
-        height: 70%;
+        height: 80%;
         margin-left: 80%;
         margin-top: 75px;
         box-shadow: 2px 2px 3px #888888;
@@ -308,13 +308,17 @@
           {lat: 39.355332, lng: 125.748454},
           {lat: 63.775087, lng: -18.392168}
         ];
+      var bounds;
 
       function initAutocomplete() { //the search function for getting an airport
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 32.729, lng: -117.195},
           zoom: 3,
           mapTypeId: 'terrain',
-          controlStreetView: false
+          streetViewControl: false,
+          mapTypeControl: false,
+          zoomControl: false,
+          scrollwheel: false
         });
 
         // Create the search box and link it to the UI element.
@@ -334,7 +338,7 @@
           var places = searchBox.getPlaces();
           //console.log(places[0].geometry.location); //first element of the search
           depPort = new google.maps.LatLng({lat: places[0].geometry.location.lat.call(), lng: places[0].geometry.location.lng.call()});
-          console.log(depPort);
+          //console.log(depPort);
           //console.log("set depart to " + depPort);
           if (places.length == 0) {
             return;
@@ -380,17 +384,22 @@
             // }
             console.log("this ran after the search");
             drawMap();
-            console.log("right here");
-            console.log(places[0].geometry.location.lat.call());
+            //console.log("right here");
+            //console.log(places[0].geometry.location.lat.call());
           //});
 
             var bounds = new google.maps.LatLngBounds(); //finds center of all polylines
               for (var i = 0; i < flightDest.length; i++) {
-                var tempCoord = new google.maps.LatLng(flightDest[i].lat+10,flightDest[i].lng+40); //offset the map to account for search bar
+                var tempCoord = new google.maps.LatLng(flightDest[i].lat,flightDest[i].lng+35); //offset the map to account for search bar
                 bounds.extend(tempCoord);
               }
             //console.log(bounds);
             map.fitBounds(bounds); //centers map to the lines
+        });
+
+        var contentString = 'this is a bunch of rando information about the place I am clicking on until I can get Place to give it to me for da free';
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
         });
 
       function drawMap() { //function to call line drawing after user input is taken
@@ -399,7 +408,7 @@
             var flightPlanCoordinates = [
               {lat: depPort.lat.call(), lng: depPort.lng.call()},
               {lat: flightDest[i].lat, lng: flightDest[i].lng} ];
-              console.log(flightPlanCoordinates);
+              //console.log(flightPlanCoordinates);
             var flightPath = new google.maps.Polyline({
               path: flightPlanCoordinates,
               geodesic: true, //line or curves!!
@@ -409,7 +418,7 @@
             });
             flightPath.setMap(map);
             flightArray.push(flightPath);
-            console.log(flightArray);
+            //console.log(flightArray);
           }
           for (k in flightArray) { //changes opacity on all lines but the hovered one
             flightArray[k].addListener('mouseover', function(){
@@ -439,47 +448,64 @@
           }
 
           for (i in markerArray) { //makes the map zoom on the clicked marker
-            var marker = markerArray[i];
-            google.maps.event.addListener(marker,'click',function(){
-            map.setZoom(8);
-            map.setCenter(this.getPosition());
-            //console.log(this.getPosition().lat.call());
-            });
+            bounds = map.getBounds();
+            if (map.getZoom() != 8) {
+              var marker = markerArray[i];
+              google.maps.event.addListener(marker,'click',function(){
+                map.setZoom(8);
+                tempCoord = new google.maps.LatLng({lat: this.getPosition().lat.call()+0.6, lng: this.getPosition().lng.call()+0.5});
+                map.setCenter(tempCoord);
+                console.log(this.getPosition().lat.call());
+                console.log(map.getZoom());
+                infowindow.open(map, this);
+              });
+            } else {
+              //map.fitBounds(bounds);
+              //console.log("did it work");
+            }
           }
-          }
+          google.maps.event.addListener(infowindow, 'closeclick', function(){
+            map.fitBounds(bounds);
+            console.log('did it do?');
+            var center = map.getCenter();
+            console.log(center.lat.call());
+            center = new google.maps.LatLng(center.lat.call(),center.lng.call()+35)
+            map.setCenter(center);
+          })
         }
       }
+    }
 
-      //events that happen apart from the map
-      var searchCon = document.getElementsByClassName("search container"); 
-      // Get the modal
-      var modal = document.getElementById('myModal');
-      var modal2 = document.getElementById('myModal2');
-      var critCont = document.getElementById('searchBox');
-      var resBar = document.getElementById('resultsbar');
-      var input = document.getElementById('box');
-      
-      window.onload = function() { //displays the first pop up on the page loading
-        modal.style.display = "block";
-        console.log("page load, showing modal 1");
-      };
+    //events that happen apart from the map
+    var searchCon = document.getElementsByClassName("search container"); 
+    // Get the modal
+    var modal = document.getElementById('myModal');
+    var modal2 = document.getElementById('myModal2');
+    var critCont = document.getElementById('searchBox');
+    var resBar = document.getElementById('resultsbar');
+    var input = document.getElementById('box');
+    
+    window.onload = function() { //displays the first pop up on the page loading
+      modal.style.display = "block";
+      console.log("page load, showing modal 1");
+    };
 
 
-      hideModal = function(type) { //toggles the pop ups
-        console.log("button click");
-        if (type == 1) {
-          modal.style.display = "none";
-          modal2.style.display = "block";
-        } else if (type == 2) {
-          modal2.style.display = "none";
-          critCont.style.display = "block";
-          resBar.style.display = "block";
-          input.style.display = "block";
-          //drawMap();
-          //need to pass the data from the form to populate the header, pull flight information from the api, generate the list, and call the function to populate additional info other the places
-          //drawLine();
-        }
+    hideModal = function(type) { //toggles the pop ups
+      console.log("button click");
+      if (type == 1) {
+        modal.style.display = "none";
+        modal2.style.display = "block";
+      } else if (type == 2) {
+        modal2.style.display = "none";
+        critCont.style.display = "block";
+        resBar.style.display = "block";
+        input.style.display = "block";
+        //drawMap();
+        //need to pass the data from the form to populate the header, pull flight information from the api, generate the list, and call the function to populate additional info other the places
+        //drawLine();
       }
+    }
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb7SwbRhXn9FiIl_9d6xjGqdg7Ktmca2A&libraries=places&callback=initAutocomplete"
