@@ -89,6 +89,13 @@
       #target {
         width: 345px;
       }
+      #box {
+        margin-top: 70px;
+        margin-left: 10%;
+        display: none;
+        z-index: 2;
+        width: 150px;
+      }
     </style>
   </head>
   <body>
@@ -96,7 +103,8 @@
     <div class="search container" id="searchBox">
       <div class="row justify-content-center">
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-          Departing from <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+          Departing from 
+          <input id="box" class="controls" type="text" placeholder="Search Box"></input>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
           Trips under
@@ -132,7 +140,7 @@
       background: white;
       width: 80%;
       margin-left: 10%;
-      margin-top: 30px;
+      margin-top: 10px;
       padding: 10px 10%;
       box-shadow: 2px 2px 3px #888888;
       border: 1px solid #c9cbce;
@@ -289,7 +297,7 @@
       var depPort;
       var flightDest;
       var flightArray = [];
-      flightDest = [
+      var flightDest = [
           {lat: 37.772, lng: -122.214},
           {lat: 21.291, lng: -157.821},
           {lat: -18.142, lng: 178.431},
@@ -310,7 +318,7 @@
         });
 
         // Create the search box and link it to the UI element.
-        var input = document.getElementById('pac-input');
+        var input = document.getElementById('box');
         var searchBox = new google.maps.places.SearchBox(input);
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -338,6 +346,7 @@
           });
           searchRet = [];
           markerArray = [];
+          flightArray = [];
 
           // For each place, get the icon, name and location.
           var bounds = new google.maps.LatLngBounds();
@@ -363,19 +372,26 @@
               position: place.geometry.location
             }));
 
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
+            // if (place.geometry.viewport) {
+            //   // Only geocodes have viewport.
+            //   bounds.union(place.geometry.viewport);
+            // } else {
+            //   bounds.extend(place.geometry.location);
+            // }
             console.log("this ran after the search");
             drawMap();
-            console.log(depPort.lat.call());
+            console.log("right here");
             console.log(places[0].geometry.location.lat.call());
           //});
+
+            var bounds = new google.maps.LatLngBounds(); //finds center of all polylines
+              for (var i = 0; i < flightDest.length; i++) {
+                var tempCoord = new google.maps.LatLng(flightDest[i].lat+10,flightDest[i].lng+40); //offset the map to account for search bar
+                bounds.extend(tempCoord);
+              }
+            //console.log(bounds);
+            map.fitBounds(bounds); //centers map to the lines
         });
-      
 
       function drawMap() { //function to call line drawing after user input is taken
         if (depPort != null) {
@@ -384,22 +400,16 @@
               {lat: depPort.lat.call(), lng: depPort.lng.call()},
               {lat: flightDest[i].lat, lng: flightDest[i].lng} ];
               console.log(flightPlanCoordinates);
-              //console.log(depPort[0].position.lat);
-              //console.log(flightDest[i]);
             var flightPath = new google.maps.Polyline({
               path: flightPlanCoordinates,
               geodesic: true, //line or curves!!
               strokeColor: '#283018',
               strokeOpacity: 0.9,
-              //icons: [{    //add the dashed line effect
-              //   icon: lineSymbol,
-              //   offset: '0',
-              //   repeat: '20px'
-              // }],
               strokeWeight: 2
             });
             flightPath.setMap(map);
             flightArray.push(flightPath);
+            console.log(flightArray);
           }
           for (k in flightArray) { //changes opacity on all lines but the hovered one
             flightArray[k].addListener('mouseover', function(){
@@ -427,21 +437,34 @@
             markerArray.push(marker);
             marker.setMap(map);
           }
+
+          for (i in markerArray) { //makes the map zoom on the clicked marker
+            var marker = markerArray[i];
+            google.maps.event.addListener(marker,'click',function(){
+            map.setZoom(8);
+            map.setCenter(this.getPosition());
+            //console.log(this.getPosition().lat.call());
+            });
+          }
+          }
         }
-
       }
-    }
 
+      //events that happen apart from the map
       var searchCon = document.getElementsByClassName("search container"); 
       // Get the modal
       var modal = document.getElementById('myModal');
       var modal2 = document.getElementById('myModal2');
       var critCont = document.getElementById('searchBox');
       var resBar = document.getElementById('resultsbar');
+      var input = document.getElementById('box');
+      
       window.onload = function() { //displays the first pop up on the page loading
         modal.style.display = "block";
         console.log("page load, showing modal 1");
       };
+
+
       hideModal = function(type) { //toggles the pop ups
         console.log("button click");
         if (type == 1) {
@@ -451,6 +474,7 @@
           modal2.style.display = "none";
           critCont.style.display = "block";
           resBar.style.display = "block";
+          input.style.display = "block";
           //drawMap();
           //need to pass the data from the form to populate the header, pull flight information from the api, generate the list, and call the function to populate additional info other the places
           //drawLine();
