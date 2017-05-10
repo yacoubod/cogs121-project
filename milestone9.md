@@ -1,5 +1,7 @@
-*Overall* A small start on refactoring, but a lot still needs to happen. We have two branches going, one with updated UI to show for demos, another that is a more built out Node app where we are re-implementing actual API calls to work properly
+**Overall:**
+A small start on refactoring, but a lot still needs to happen. We have two branches going, one with updated UI to show for demos, another that is a more built out Node app where we are re-implementing actual API calls to work properly
 
+**Individual progress:**
 *Ryan:* I built upon Yacoub's refactor into a full Node app with a backend, and starting working on linking the Skyscanner and Google Maps APIs. There's some trouble with how Skyscanner returns the JSON object: it doesn't have proper Long/Lat data in order to link to Google Maps. There should be a way to work around that, but I'm not sure yet how to tackle it. Also pushed to Heroku and working to transition future code into a full app instead of a single .html massive file.
 
 *Yacoub:* I restructured the app to use the same stack we used in COGS 120. That's what we all are most familiar with and will just build on top of that.
