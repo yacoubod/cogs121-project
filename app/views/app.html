@@ -269,14 +269,14 @@
         } else if (type == 2) {
           setVar();
           console.log(isFormComplete());
-           if (isFormComplete()) {
+           //if (isFormComplete()) {
             modal2.style.display = "none";
             critCont.style.display = "block";
             //resBar.style.display = "block";
             //input.style.display = "block";
             setVar();
-           } else {
-           }
+           //} else {
+           //}
         }
       }
 
@@ -397,11 +397,12 @@
         }
 
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
+          // tempPos = new google.maps.LatLng(pos);
+          // infoWindow.setPosition(tempPos);
+          // infoWindow.setContent(browserHasGeolocation ?
+          //                       'Error: The Geolocation service failed.' :
+          //                       'Error: Your browser doesn\'t support geolocation.');
+          // infoWindow.open(map);
         }
 
         function findAirports(pos) { //want to make the map return airports near the current location to pick from
@@ -498,6 +499,7 @@
           var flightBounds = map.getBounds();
           flightBounds.extend(flightDest[i]);
           map.fitBounds(flightBounds); //need to fix bounds to not zoom so much
+          map.setZoom(2);
         }
           
         for (k in flightArray) { //changes opacity on all lines but the hovered one
@@ -529,6 +531,7 @@
 
         for (i in markerArray) { //makes the map zoom on the clicked marker
           bounds = map.getBounds();
+          center = map.getCenter();
           
           if (map.getZoom() != 8) { //checks that the map is zoomed out
             var marker = markerArray[i]; //gets the clicked marker
@@ -536,32 +539,29 @@
               map.setZoom(8); //zooms in the map
               tempCoord = new google.maps.LatLng({lat: this.getPosition().lat.call()+0.6, lng: this.getPosition().lng.call()+0.5}); //builds a new center for the map
               map.setCenter(tempCoord); //sets the center of the map
-              //infowindow.open(map, this); //open the pop up on the marker
+              infowindow.open(map, this); //open the pop up on the marker
             });
           }
+
+          //infowindow content set here
+        var contentString = 'this is a bunch of rando information about the place I am clicking on until I can get Place to give it to me for da free';
+        infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
           
-        // google.maps.event.addListener(infowindow, 'closeclick', function(){ //if the pop up is closed
-        //   map.fitBounds(bounds); //resets the bounds of the map
-        //   var center = map.getCenter(); //gets the center again
-        //   center = new google.maps.LatLng(center.lat.call(),center.lng.call()+35); 
-        //   map.setCenter(center); //sets the center
-        // })
+         google.maps.event.addListener(infowindow, 'closeclick', function(){ //if the pop up is closed
+          map.fitBounds(bounds); //resets the bounds of the map
+          var center = map.getCenter(); //gets the center again
+          center = new google.maps.LatLng(center.lat.call(),center.lng.call()+35); 
+          map.setCenter(center); //sets the center
+          map.setZoom(2);
+         });
 
         }
       }
-        
-      searchRet = [];
-      markerArray = [];
-      flightArray = [];
 
       // For each place, get the icon, name and location.
       //var bounds = new google.maps.LatLngBounds();
-
-      //infowindow content set here
-      var contentString = 'this is a bunch of rando information about the place I am clicking on until I can get Place to give it to me for da free';
-      infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
 
       // Get the place details for a hotel. Show the information in an info window,
       // anchored on the marker for the hotel that the user selected.
