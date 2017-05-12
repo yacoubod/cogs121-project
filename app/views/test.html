@@ -244,6 +244,8 @@
       var city;
       var places;
       var cityState = false;
+      var infoWindow;
+      var infowindow;
 
       //events that happen apart from the map
       var searchCon = document.getElementsByClassName("search container"); 
@@ -293,7 +295,7 @@
       var dayRet;
     
       subVar = function() {
-        if (isFormComplete()) {
+        if (isFormComplete()) { //need to fix so that it gets the whole value and it currently breaks after having broken once, it will not rewrite the values into the var
           console.log(isFormComplete());
           minBudget = document.getElementById('lowEndUI').value;
           maxBudget = document.getElementById('highEndUI').value;
@@ -322,7 +324,8 @@
       isFormComplete = function() {
         if (minBudget!="" || maxBudget!="" || dateDep!="" || dateRet!="") {
           if (minBudget<=maxBudget){
-            //console.log("budget is good");
+            console.log(minBudget);
+            console.log(maxBudget);
             if (yearDep<=yearRet){
               //console.log("year is good");
               if (monthDep<=monthRet) {
@@ -382,7 +385,6 @@
               lng: position.coords.longitude
             };
             map.setZoom(9);
-
             map.setCenter(pos);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -402,7 +404,7 @@
         infoWindow.open(map);
         }
 
-        function findAirports(pos) {
+        function findAirports(pos) { //want to make the map return airports near the current location to pick from
           //var searchReturns = new google.maps.
         }
 
@@ -457,15 +459,14 @@
                 animation: google.maps.Animation.DROP,
               });
               city.setMap(map);
-              console.log(city);
               // If the user clicks a hotel marker, show the details of that hotel
               // in an info window.
               city.placeResult = result;
               city.addListener('click', function(){
                 drawMap();
+                console.log("click the marker");
               });
               cityState = true;
-              console.log(depPort);
           }
         });
       }
@@ -480,10 +481,10 @@
       }
 
       function drawMap() { //function to call line drawing after user input is taken
-      if (depPort != null) { //make sure there is a departing point
+      if (city != null) { //make sure there is a departing point
         for (var i=0; i<flightDest.length; i++) {
           var flightPlanCoordinates = [ //set departing and destination coords
-            {lat: depPort.lat.call(), lng: depPort.lng.call()},
+            {lat: city.position.lat.call(), lng: city.position.lng.call()},
             {lat: flightDest[i].lat, lng: flightDest[i].lng} ];
           var flightPath = new google.maps.Polyline({ //make the polylines
             path: flightPlanCoordinates,
@@ -494,6 +495,9 @@
           });
           flightPath.setMap(map); //set flights to the map
           flightArray.push(flightPath); //add flights to the array
+          var flightBounds = map.getBounds();
+          flightBounds.extend(flightDest[i]);
+          map.fitBounds(flightBounds); //need to fix bounds to not zoom so much
         }
           
         for (k in flightArray) { //changes opacity on all lines but the hovered one
@@ -532,16 +536,16 @@
               map.setZoom(8); //zooms in the map
               tempCoord = new google.maps.LatLng({lat: this.getPosition().lat.call()+0.6, lng: this.getPosition().lng.call()+0.5}); //builds a new center for the map
               map.setCenter(tempCoord); //sets the center of the map
-              infowindow.open(map, this); //open the pop up on the marker
+              //infowindow.open(map, this); //open the pop up on the marker
             });
           }
           
-        google.maps.event.addListener(infowindow, 'closeclick', function(){ //if the pop up is closed
-          map.fitBounds(bounds); //resets the bounds of the map
-          var center = map.getCenter(); //gets the center again
-          center = new google.maps.LatLng(center.lat.call(),center.lng.call()+35); 
-          map.setCenter(center); //sets the center
-        })
+        // google.maps.event.addListener(infowindow, 'closeclick', function(){ //if the pop up is closed
+        //   map.fitBounds(bounds); //resets the bounds of the map
+        //   var center = map.getCenter(); //gets the center again
+        //   center = new google.maps.LatLng(center.lat.call(),center.lng.call()+35); 
+        //   map.setCenter(center); //sets the center
+        // })
 
         }
       }
@@ -555,9 +559,23 @@
 
       //infowindow content set here
       var contentString = 'this is a bunch of rando information about the place I am clicking on until I can get Place to give it to me for da free';
-      var infowindow = new google.maps.InfoWindow({
+      infowindow = new google.maps.InfoWindow({
         content: contentString
       });
+
+      // Get the place details for a hotel. Show the information in an info window,
+      // anchored on the marker for the hotel that the user selected.
+      function showInfoWindow() {
+        var marker = this;
+        places.getDetails({placeId: marker.placeResult.place_id},
+            function(place, status) {
+              if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                return;
+              }
+              infoWindow.open(map, marker);
+              buildIWContent(place);
+            });
+      }
 
     } //end of script area
   
