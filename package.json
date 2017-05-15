@@ -3,7 +3,6 @@
   "description": "Project for COGS 121",
   "version": "0.0.1",
   "author": "Greg Morgan",
-
   "repository": {
   	"type": "git",
   	"url": "https://github.com/gjmorgan91/cogs121-project"
@@ -16,5 +15,9 @@
   },
   "engines": {
   	"node": "0.10.x"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
