@@ -14,4 +14,4 @@ Our approach does not require that you put in a lot of details about your flight
 
 *Who cares? If you succeed, what difference will it make?*
 
-Because people want to travel but are not easily able to find upcoming opportunities that fit their budget, they don't travel as much as they might want to. The goal is to encourage people to travel and explore the world without making money the hard limit.
+Because people want to travel but are not easily able to find upcoming opportunities that fit their budget, they don't travel as much as they might want to. The goal is to encourage people to travel and explore the world without making money the hard limit. If you have a flexible schedule and don't care where you go as long as you can get there cheaply, this is the tool for you. It's not the flight that people remember about their trip, but the memories they made while they were there. We want to lead people to those opportunities to make those priceless memories.
