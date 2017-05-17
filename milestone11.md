@@ -1,4 +1,4 @@
-![](http://imgur.com/AtSTDj1)
+![](http://imgur.com/AtSTDj1.png)
 
 Ryan:
 I added a route to getFlights.js where I am handling the HTTP requests 
