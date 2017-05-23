@@ -2,11 +2,11 @@
 
 *What are you trying to do? Articulate your objectives using absolutely no jargon.*
 
-We are building a travel booking website that is organized the way those with wanderlust think – instead of focusing on the details, what are all of my opportunities in the near future to cheaply travel?
+We are building a travel booking website called Wanderlust that is organized the way those with wanderlust think – instead of focusing on filling out the details on a form, what are all of my opportunities in the near future to cheaply travel?
 
 *How is it done today, and what are the limits of current practice?*
 
-Currently you need to know all of the details of your flight before you start exploring what tickets you can buy. This is more information than most "on-the-fence" travelers have, and because of this they don't travel as often.
+Currently you need to know all of the details of your flight before you start exploring what tickets you can buy. This is more information than most "on-the-fence" travelers have, and because of this they don't explore their opportunities and don't travel as often.
 
 *What is new in your approach and why do you think it will be successful?*
 
