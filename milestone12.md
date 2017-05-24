@@ -12,7 +12,7 @@ I am added a data file to the project in light of sky scanner issues and learned
 
 *Greg:*
 
-
+Added functionality to be able to take in a city or airport and get a marker on the map which will allow us to access all of the Google Place documentation and images of that location.
 
 *Screenshots:*
 
