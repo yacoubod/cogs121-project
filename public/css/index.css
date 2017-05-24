@@ -11,6 +11,10 @@ html, body {
 }
 
 .search {
+
+}
+
+.search.container {
   position: absolute;
   z-index:1;
   background: white;
@@ -31,7 +35,7 @@ html, body {
 }
 
 .validate {
-  margin-bottom: 5px !important; 
+  margin-bottom: 5px; 
 }
 
 .input-field {
@@ -81,10 +85,10 @@ html, body {
 /* Modal Content/Box */
 .modal-content {
   background-color: #f0eceb;
-  margin: 12% auto; /* 15% from the top and centered */
+  margin: 10% auto; /* 15% from the top and centered */
   padding: 0px;
   border: 1px solid #888;
-  width: 40%; /* Could be more or less, depending on screen size */
+  width: 30%; /* Could be more or less, depending on screen size */
 }
 
 #modalHeader {
@@ -127,4 +131,16 @@ html, body {
   font-weight: 500;
   font-size: larger;
   padding: 0px;
+}
+
+#hider {
+  position: absolute;
+  z-index: 1;
+  margin-top: 18%;
+  margin-left: 10%;
+}
+
+#hideButton {
+  width: 30px;
+  height: 30px;
 }

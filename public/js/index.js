@@ -2,6 +2,7 @@
 
 var map;
 var service; //places search service
+var geocoder;
 var departing = [ //holds info of the departing city
     {city: ""},
     {marker: ""}
@@ -31,6 +32,8 @@ var citySearch = [
   {city: 'Liverpool'},
   {city: 'Brisbane'}
 ];
+
+var cityResult = [];
 
 var boundsOverView;
 var centerOverView;
@@ -89,9 +92,9 @@ subVar = function() {
     maxBudget = document.getElementById('highEndUI').value;
     dateDep = document.getElementById('departUI').value;
     dateRet = document.getElementById('returnUI').value;
-    $('.errorBar').hide();
+    $('#submitButton').css('background-color','#AAAAAA');
   } else {
-    $('.errorBar').show();
+    $('#submitButton').css('background-color','#AAAAAA');
   }
 }
 
@@ -151,6 +154,17 @@ setDates = function() {
   }
 }
 
+var toggle = 1;
+toggleForm = function() {
+  if (toggle == 1) {
+    //move form up to the top, off the page
+    toggle = 2;
+  } else {
+    //move form down, so it is visible
+    toggle = 1;
+  }
+}
+
 
 
 function initMap() { //the search function for getting an airport
@@ -161,7 +175,7 @@ function initMap() { //the search function for getting an airport
     mapTypeId: 'terrain',
     streetViewControl: false,
     mapTypeControl: false, //changing from sat to terrain
-    zoomControl: false, //icons to zoom in or out
+    //zoomControl: false, //icons to zoom in or out
     scrollwheel: false, //zooming in/out with mousewheel
     panControl: false 
   });
@@ -218,9 +232,11 @@ function initMap() { //the search function for getting an airport
   if (cityState) {
     console.log("i wanna click");
     departing.marker.addListener('click', function(){
-      drawMap();
+      codeAddress();
     });
   }
+
+  geocoder = new google.maps.Geocoder();
 
   // search for the cities of destinations and place markers
   // for (var j = 0; j < citySearch.length; j++) {
@@ -308,11 +324,31 @@ function search() {
       departing.marker.setMap(map);
       departing.marker.placeResult = result;
       departing.marker.addListener('click', function(){
-        drawMap();
+        codeAddress();
         console.log("click the marker");
       });
     }
   });
+}
+
+function codeAddress() {
+  for (var i = 0; i < citySearch.length; i++) {
+    var address = citySearch[i].city;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+        //map.setCenter(results[0].geometry.location);
+        // var marker = new google.maps.Marker({
+        //     map: map,
+        //     position: results[0].geometry.location
+        // });
+        cityResult.push(results);
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+  drawMap(cityResult);
+  console.log(cityResult);
 }
 
 
@@ -330,53 +366,58 @@ function clearMarkers() {
   //}
 }
 
-function drawMap() { //function to call line drawing after user input is taken
-if (departing.marker != null) { //make sure there is a departing point
-  
-  for (var i=0; i<flightDest.length; i++) {
-    
-    var flightPlanCoordinates = [ //set departing and destination coords
-      {lat: departing.marker.position.lat.call(), lng: departing.marker.position.lng.call()},
-      {lat: flightDest[i].lat, lng: flightDest[i].lng} ];
-    
-    var flightPath = new google.maps.Polyline({ //make the polylines
-      path: flightPlanCoordinates,
-      geodesic: true, //line or curves!!
-      strokeColor: '#283018',
-      strokeOpacity: 0.9,
-      strokeWeight: 2
-    });
-    flightPath.setMap(map); //set flights to the map
-    flightArray.push(flightPath); //add flights to the array
-    
-    boundsOverView = map.getBounds();
-    boundsOverView.extend(flightDest[i]);
-    map.fitBounds(boundsOverView); //need to fix bounds to not zoom so much
-    map.setZoom(2);
-    centerOverView = map.getCenter();
+function drawMap(destinations) { //function to call line drawing after user input is taken
+  console.log('check if not null');
+if (destinations != null) { //make sure there is a departing point
+  console.log('k its not null');
+  for (var i=0; i<destinations.length; i++) {
+    //if (destinations[i].length == 1) {
+      console.log('here we go');
+      // var flightPlanCoordinates = [ //set departing and destination coords
+      //   {lat: departing.marker.position.lat.call(), lng: departing.marker.position.lng.call()},
+      //   {lat: destinations.geometry.location.lat, lng: destinations.geometry.location.lng} ];
+      
+      // var flightPath = new google.maps.Polyline({ //make the polylines
+      //   path: flightPlanCoordinates,
+      //   geodesic: true, //line or curves!!
+      //   strokeColor: '#283018',
+      //   strokeOpacity: 0.9,
+      //   strokeWeight: 2
+      // });
+      // flightPath.setMap(map); //set flights to the map
+      // flightArray.push(flightPath); //add flights to the array
+      
+      boundsOverView = map.getBounds();
+      boundsOverView.extend(destinations[i].geometry.location);
+      map.fitBounds(boundsOverView); //need to fix bounds to not zoom so much
+      map.setZoom(2);
+      centerOverView = map.getCenter();
+    //}
   }
     
-  for (k in flightArray) { //changes opacity on all lines but the hovered one
-    flightArray[k].addListener('mouseover', function(){ //function for the lines dimming when one is hovered
-      for (var j=0; j<flightArray.length; j++) {
-        flightArray[j].setOptions({strokeOpacity:0.2});
-        this.setOptions({strokeOpacity:1.0});
-      }
-    });
+  // for (k in flightArray) { //changes opacity on all lines but the hovered one
+  //   flightArray[k].addListener('mouseover', function(){ //function for the lines dimming when one is hovered
+  //     for (var j=0; j<flightArray.length; j++) {
+  //       flightArray[j].setOptions({strokeOpacity:0.2});
+  //       this.setOptions({strokeOpacity:1.0});
+  //     }
+  //   });
 
-    flightArray[k].addListener('mouseout', function(){ //reset line opacity after mouse leaves
-      for (var i=0; i<flightArray.length; i++) {
-        flightArray[i].setOptions({strokeOpacity:1.0});
-        this.setOptions({strokeOpacity:1.0});
-      }
-    });
-  }
+  //   flightArray[k].addListener('mouseout', function(){ //reset line opacity after mouse leaves
+  //     for (var i=0; i<flightArray.length; i++) {
+  //       flightArray[i].setOptions({strokeOpacity:1.0});
+  //       this.setOptions({strokeOpacity:1.0});
+  //     }
+  //   });
+  // }
 
-  var markerArray= []; //object of all the markers
+  var markerArray = []; //object of all the markers
   
-  for (var i=0; i<flightDest.length; i++) { //loops through all destination
+  console.log('is it getting this far');
+  console.log(destinations.length);
+  for (var i=0; i<destinations.length; i++) { //loops through all destination
     var marker = new google.maps.Marker({ //creates a marker at each destination
-      position: flightDest[i],
+      position: destinations[i].geometry.location,
       map: map,
       animation: google.maps.Animation.DROP
     });
