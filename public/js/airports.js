@@ -1,7 +1,7 @@
 eqfeed_callback(
   {"type":"FeatureCollection",
-    "features":[{
-      "type":"Feature",
+    "airports":[{
+      "type":"Airport",
       "properties":{
         "mag":5.4,
         "place":"48km SSE of Pondaguitan, Philippines",
