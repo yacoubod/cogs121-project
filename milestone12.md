@@ -4,11 +4,11 @@ I spoke with professor Guo and Alok about the problems that I have been having w
 
 *Yacoub:*
 
-I am added a data file to the project in light of sky scanner issues and learned how to parse the file and put pins on map based on any given JSON. Next step is to import a JSON file with airport data if we can't figure out QPX API.
+I added a data file to the project in light of sky scanner issues and learned how to parse the file and put pins on map based on any given JSON. Next step is to import a JSON file with airport data if we can't figure out QPX API.
 
 *Sandra:*
 
-
+I am working on adding implementating a data set so that we can convert the IATA codes (that represent airports) returned from an API request to longitude and latitude in order to display the location on the map. After finishing that, I will contribute to implementing the QPX API and displaying the information retrieved from that.
 
 *Greg:*
 
