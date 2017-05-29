@@ -319,7 +319,7 @@ function search() {
       // Use marker animation to drop the icons incrementally on the map.
       departing.marker = new google.maps.Marker({ //places a marker
         position: result.geometry.location,
-        animation: google.maps.Animation.DROP,
+        animation: google.maps.Animation.DROP
       });
       departing.marker.setMap(map);
       departing.marker.placeResult = result;
@@ -341,14 +341,17 @@ function codeAddress() {
         //     map: map,
         //     position: results[0].geometry.location
         // });
-        cityResult.push(results);
+        cityResult.push(results[0]);
+        console.log(results[0]);
+        console.log(cityResult);
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
+
   }
-  drawMap(cityResult);
   console.log(cityResult);
+  drawMap(cityResult);
 }
 
 
@@ -366,16 +369,17 @@ function clearMarkers() {
   //}
 }
 
-function drawMap(destinations) { //function to call line drawing after user input is taken
+function drawMap() { //function to call line drawing after user input is taken
   console.log('check if not null');
-if (destinations != null) { //make sure there is a departing point
+if (cityResult != null) { //make sure there is a departing point
   console.log('k its not null');
-  for (var i=0; i<destinations.length; i++) {
+  console.log(cityResult.length);
+  for (var i=0; i<cityResult.length; i++) {
     //if (destinations[i].length == 1) {
-      console.log('here we go');
+      // console.log('here we go');
       // var flightPlanCoordinates = [ //set departing and destination coords
       //   {lat: departing.marker.position.lat.call(), lng: departing.marker.position.lng.call()},
-      //   {lat: destinations.geometry.location.lat, lng: destinations.geometry.location.lng} ];
+      //   cityResult[i].location ];
       
       // var flightPath = new google.maps.Polyline({ //make the polylines
       //   path: flightPlanCoordinates,
@@ -388,7 +392,7 @@ if (destinations != null) { //make sure there is a departing point
       // flightArray.push(flightPath); //add flights to the array
       
       boundsOverView = map.getBounds();
-      boundsOverView.extend(destinations[i].geometry.location);
+      boundsOverView.extend(cityResult[i].geometry.location);
       map.fitBounds(boundsOverView); //need to fix bounds to not zoom so much
       map.setZoom(2);
       centerOverView = map.getCenter();
@@ -414,10 +418,10 @@ if (destinations != null) { //make sure there is a departing point
   var markerArray = []; //object of all the markers
   
   console.log('is it getting this far');
-  console.log(destinations.length);
-  for (var i=0; i<destinations.length; i++) { //loops through all destination
+  console.log(cityResult.length);
+  for (var i=0; i<cityResult.length; i++) { //loops through all destination
     var marker = new google.maps.Marker({ //creates a marker at each destination
-      position: destinations[i].geometry.location,
+      position: cityResult[i].geometry.location,
       map: map,
       animation: google.maps.Animation.DROP
     });
