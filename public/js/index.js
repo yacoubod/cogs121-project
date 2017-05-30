@@ -435,80 +435,55 @@ if (cityResult != null) { //make sure there is a departing point
     
     if (map.getZoom() != 8) { //checks that the map is zoomed out
       var marker = markerArray[i]; //gets the clicked marker
+
       google.maps.event.addListener(marker,'click',function(){
         map.setZoom(6); //zooms in the map
         tempCoord = new google.maps.LatLng({lat: this.getPosition().lat.call()+0.6, lng: this.getPosition().lng.call()+0.5}); //builds a new center for the map
         map.setCenter(tempCoord); //sets the center of the map
+        
+        var index = markerArray.indexOf(this);
+
+        var request = { placeId: cityResult[index].place_id };
+        console.log('id is: ' + cityResult[index].place_id);
+
+        infowindow = new google.maps.InfoWindow();
+        console.log('made the infowindow');
+
+        service.getDetails(request, function (place, status) {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            console.log(status);
+
+            infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+              'Place ID: ' + place.place_id + '<br>' +
+              place.formatted_address + '</div>');
+            // infowindow.open(map, this);
+
+            // map.panTo(place.geometry.location);
+          }
+        });
+
         infowindow.open(map, this); //open the pop up on the marker
+        google.maps.event.addListener(infowindow, 'closeclick', function(){ //if the pop up is closed
+          map.fitBounds(boundsOverView); //resets the bounds of the map
+          map.setCenter(centerOverView);
+          map.setZoom(2);
+        });
       });
+      // google.maps.event.addListener(infowindow, 'closeclick', function(){ //if the pop up is closed
+      //   map.fitBounds(boundsOverView); //resets the bounds of the map
+      //   map.setCenter(centerOverView);
+      //   map.setZoom(2);
+      // });
     }
-
-    placeDetailsByPlaceId(service, map, infowindow);
-
-  // infowindow content set here
-  var contentString = '<div id="infoContent">' +
-  '<h3 id="placeName"><b>{{Place Name}}</b></h3>' +
-  '<h6 id="flightDetails>{{Flight Info}}</h6>' +
-  '<p id="placeDetails>{{placeDetails}}</p>' +
-  '<div id="placeImages></div>' +
-  '</div>';
-  infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
     
-   google.maps.event.addListener(infowindow, 'closeclick', function(){ //if the pop up is closed
-    map.fitBounds(boundsOverView); //resets the bounds of the map
-    map.setCenter(centerOverView);
-    map.setZoom(2);
-   });
+   // google.maps.event.addListener(infowindow, 'closeclick', function(){ //if the pop up is closed
+   //  map.fitBounds(boundsOverView); //resets the bounds of the map
+   //  map.setCenter(centerOverView);
+   //  map.setZoom(2);
+   // });
 
   }
 }
-
-function placeDetailsByPlaceId(service, map, infowindow) {
-  // Create and send the request to obtain details for a specific place,
-  // using its Place ID.
-  var request = {
-    placeId: 'hIJTUbDjDsYAHwRbJen81_1KEs' //document.getElementById('place-id').value
-  };
-
-  service.getDetails(request, function (place, status) {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-      // If the request succeeds, draw the place location on the map
-      // as a marker, and register an event to handle a click on the marker.
-      var marker = new google.maps.Marker({
-        map: map,
-        position: place.geometry.location
-      });
-
-      google.maps.event.addListener(marker, 'click', function() {
-        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-          'Place ID: ' + place.place_id + '<br>' +
-          place.formatted_address + '</div>');
-        infowindow.open(map, this);
-      });
-
-      //map.panTo(place.geometry.location);
-    }
-  });
-}
-
-// For each place, get the icon, name and location.
-//var bounds = new google.maps.LatLngBounds();
-
-// Get the place details for a hotel. Show the information in an info window,
-// anchored on the marker for the hotel that the user selected.
-function showInfoWindow() {
-  var marker = this;
-  places.getDetails({placeId: marker.placeResult.place_id},
-      function(place, status) {
-        if (status !== google.maps.places.PlacesServiceStatus.OK) {
-          return;
-        }
-        infoWindow.open(map, marker);
-        buildIWContent(place);
-      });
-} 
 
 } //end of script area
   
