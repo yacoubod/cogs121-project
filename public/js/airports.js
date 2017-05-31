@@ -16,6 +16,13 @@ eqfeed_callback(
     "coordinates": [-12.021900177,-77.1143035889],
    },
    {
+    "airport": "Astor Piazzola International Airport",
+    "place": "Buenos Aires",
+    "country": "Argentina",
+    "iata": "MDQ",
+    "coordinates": [-37.9342,-57.5733],
+   },
+   {
      "airport": " Amsterdam Airport Schiphol",
      "place": "Haarlemmermeer, North Holland",
      "country": "The Netherlands",
