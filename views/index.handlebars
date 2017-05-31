@@ -11,6 +11,25 @@
 
   </head>
   <body>
+    <!-- tutorial modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Welcome to Wanderlust!</h3>
+          </div>
+          <div class="modal-body">
+            <p>Ever want to travel on a dime but don't know where to start?</p>
+            <p>Wanderlust gives you a friendly way to explore cheap travel opportunities in the near future.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Start exploring!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtering UI -->
     <div class="search container">
       <div class="row justify-content-center">
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -76,7 +95,7 @@
           google.maps.event.addListener(marker, 'click', function(){
             infowindow.close(); // Close previously opened infowindow
             // generate URL to Google Flights for relevant search query
-            infowindow.setContent( "<div id='infowindow'>"+ pin.place +"</div>" + "<div>Est Price:" + pin.price + "</div>" + "<a target='_blank' href='https://www.google.com/flights/#search;f=" + "SAN" + ";t=" + pin.iata + ";d=" + "2017-07-01" + ";tt=o" + ";mp=" + pin.price + "'>Buy Tickets Now!</a>");
+            infowindow.setContent( "<div id='infowindow'><h3>"+ pin.place +"</h3></div>" + "<div><h5>Est Low Price: $" + pin.price + "</h5></div>" + "<a target='_blank' href='https://www.google.com/flights/#search;f=" + "SAN" + ";t=" + pin.iata + ";d=" + "2017-07-01" + ";tt=o" + ";mp=" + pin.price + "'>Buy Tickets Now!</a>");
 
             infowindow.open(map, marker);
           });
@@ -130,5 +149,12 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+    $(window).on('load',function(){
+        $('#myModal').modal('show');
+    });
+    </script>
+
   </body>
 </html>
