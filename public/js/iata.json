@@ -50,8 +50,3 @@
 "TPE",
 "YYZ"
 ]
-
-/*
-query for json generator
-random("AMS","ATL","BCN","BKK","BOM","CAN","CDG","CGK","CLT","CTU","DEL","DEN","DFW","DOH","DXB","EWR","FCO","FRA","HKG","HND","IAH","ICN","IST","JFK","KMG","KUL","LAS","LAX","LGW","LHR","MAD","MCO","MEX","MIA","MNL","MSP","MUC","NRT","ORD","PEK","PHX","PVG","SEA","SFO","SHA","SIN","SYD","SZX","TPE","YYZ")
-*/
