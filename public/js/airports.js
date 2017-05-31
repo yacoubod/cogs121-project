@@ -2,8 +2,6 @@
 eqfeed_callback(
   {"airports":[
    {
-<<<<<<< HEAD
-=======
     "airport": "Cape Town International Airport",
     "place": "Cape Town",
     "country": "South Africa",
@@ -28,7 +26,6 @@ eqfeed_callback(
     "price": 1050
    },
    {
->>>>>>> 4844bccd443ec3292c96eb4f908506b0d01fc35f
      "airport": " Amsterdam Airport Schiphol",
      "place": "Haarlemmermeer, North Holland",
      "country": "The Netherlands",
