@@ -14,6 +14,7 @@ eqfeed_callback(
     "country": "Peru",
     "iata": "LIM",
     "coordinates": [-12.021900177,-77.1143035889],
+    "price": 1150
    },
    {
     "airport": "Astor Piazzola International Airport",
@@ -21,6 +22,7 @@ eqfeed_callback(
     "country": "Argentina",
     "iata": "MDQ",
     "coordinates": [-37.9342,-57.5733],
+    "price": 1050
    },
    {
      "airport": " Amsterdam Airport Schiphol",
@@ -28,7 +30,7 @@ eqfeed_callback(
      "country": "The Netherlands",
      "iata": "AMS",
      "coordinates": [52.3086013794, 4.763889789579999],
-     "price": 200
+     "price": 890
    },
    {
      "airport": " Hartsfield–Jackson Atlanta International Airport",
@@ -84,7 +86,7 @@ eqfeed_callback(
      "country": "Indonesia",
      "iata": "CGK",
      "coordinates": [-6.1255698204,106.65599823],
-     "price": 200
+     "price": 780
    },
    {
      "airport": " Charlotte Douglas International Airport",
@@ -92,7 +94,7 @@ eqfeed_callback(
      "country": "United States",
      "iata": "CLT",
      "coordinates": [35.2140007019043, -80.94309997558594],
-     "price": 200
+     "price": 300
    },
    {
      "airport": " Chengdu Shuangliu International Airport",
@@ -100,7 +102,7 @@ eqfeed_callback(
      "country": "China",
      "iata": "CTU",
      "coordinates": [30.578500747680664, 103.9469985961914],
-     "price": 200
+     "price": 900
    },
    {
      "airport": " Indira Gandhi International Airport",
@@ -116,7 +118,7 @@ eqfeed_callback(
      "country": "United States",
      "iata": "DEN",
      "coordinates": [39.861698150635, -104.672996521],
-     "price": 1000
+     "price": 200
    },
    {
      "airport": " Dallas/Fort Worth International Airport",
@@ -132,7 +134,7 @@ eqfeed_callback(
      "country": "Qatar",
      "iata": "DOH",
      "coordinates": [25.273056, 51.608056],
-     "price": 200
+     "price": 1200
    },
    {
      "airport": " Dubai International Airport",
@@ -188,7 +190,7 @@ eqfeed_callback(
      "country": "United States",
      "iata": "IAH",
      "coordinates": [29.984399795532227, -95.34140014648438],
-     "price": 1300
+     "price": 250
    },
    {
      "airport": " Seoul Incheon International Airport",
@@ -204,7 +206,7 @@ eqfeed_callback(
      "country": "Turkey",
      "iata": "IST",
      "coordinates": [40.9768981934, 28.814599990799998],
-     "price": 200
+     "price": 1300
    },
    {
      "airport": " John F. Kennedy International Airport",
@@ -212,7 +214,7 @@ eqfeed_callback(
      "country": "United States",
      "iata": "JFK",
      "coordinates": [40.63980103, -73.77890015],
-     "price": 1000
+     "price": 400
    },
    {
      "airport": " Kunming Changshui International Airport",
@@ -236,7 +238,7 @@ eqfeed_callback(
      "country": "United States",
      "iata": "LAS",
      "coordinates": [36.08010101,-115.1520004],
-     "price": 850
+     "price": 150
    },
    {
      "airport": " Los Angeles International Airport",
@@ -244,7 +246,7 @@ eqfeed_callback(
      "country": "United States",
      "iata": "LAX",
      "coordinates": [33.94250107,-118.4079971],
-     "price": 850
+     "price": 100
    },
    {
      "airport": " Gatwick Airport",
@@ -268,7 +270,7 @@ eqfeed_callback(
      "country": "Spain",
      "iata": "MAD",
      "coordinates": [40.471926,-3.56264],
-     "price": 200
+     "price": 1000
    },
    {
      "airport": " Orlando International Airport",
@@ -276,7 +278,7 @@ eqfeed_callback(
      "country": "United States",
      "iata": "MCO",
      "coordinates": [28.429399490356445, -81.30899810791016],
-     "price": 1000
+     "price": 400
    },
    {
      "airport": " Benito Juárez International Airport",
@@ -292,7 +294,7 @@ eqfeed_callback(
      "country": "United States",
      "iata": "MIA",
      "coordinates": [25.79319953918457,-80.29060363769531],
-     "price": 1000
+     "price": 300
    },
    {
      "airport": " Ninoy Aquino International Airport",
@@ -308,7 +310,7 @@ eqfeed_callback(
      "country": "United States",
      "iata": "MSP",
      "coordinates": [44.881999969499994,-93.22180175780001],
-     "price": 700
+     "price": 200
    },
    {
      "airport": " Munich Airport",
@@ -324,7 +326,7 @@ eqfeed_callback(
      "country": "Japan",
      "iata": "NRT",
      "coordinates": [35.7647018433, 140.386001587],
-     "price": 1000
+     "price": 800
    },
    {
      "airport": " O'Hare International Airport",
@@ -332,7 +334,7 @@ eqfeed_callback(
      "country": "United States",
      "iata": "ORD",
      "coordinates": [41.97859955,-87.90480042],
-     "price": 1000
+     "price": 200
    },
    {
      "airport": " Beijing Capital International Airport",
@@ -356,7 +358,7 @@ eqfeed_callback(
      "country": "China",
      "iata": "PVG",
      "coordinates": [31.143400192260742,121.80500030517578],
-     "price": 200
+     "price": 1800
    },
    {
      "airport": " Seattle-Tacoma International Airport",
@@ -364,7 +366,7 @@ eqfeed_callback(
      "country": "United States",
      "iata": "SEA",
      "coordinates": [47.44900131225586,-122.30899810791016],
-     "price": 850
+     "price": 150
    },
    {
      "airport": " San Francisco International Airport",
@@ -372,7 +374,7 @@ eqfeed_callback(
      "country": "United States",
      "iata": "SFO",
      "coordinates": [37.61899948120117,-122.375],
-     "price": 200
+     "price": 100
    },
    {
      "airport": " Shanghai Hongqiao International Airport",
@@ -412,7 +414,7 @@ eqfeed_callback(
      "country": "Taiwan",
      "iata": "TPE",
      "coordinates": [25.0777, 121.233002],
-     "price": 200
+     "price": 600
    },
    {
      "airport": " Toronto Pearson International Airport",
@@ -420,7 +422,7 @@ eqfeed_callback(
      "country": "Canada",
      "iata": "YYZ",
      "coordinates": [43.6772003174,-79.63059997559999],
-     "price": 1000
+     "price": 400
    }
   ]}
 );
