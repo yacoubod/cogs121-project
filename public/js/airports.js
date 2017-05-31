@@ -1,27 +1,6 @@
+// built with http://www.convertcsv.com/csv-to-json.htm
 eqfeed_callback(
   {"airports":[
-   {
-    "airport": "Cape Town International Airport",
-    "place": "Cape Town",
-    "country": "South Africa",
-    "iata": "CPT",
-    "coordinates": [-33.9648017883,18.6016998291],
-    "price": 1030
-    },
-    {
-    "airport": "Jorge Chavez International Airport",
-    "place": "Lima",
-    "country": "Peru",
-    "iata": "LIM",
-    "coordinates": [-12.021900177,-77.1143035889],
-   },
-   {
-    "airport": "Astor Piazzola International Airport",
-    "place": "Buenos Aires",
-    "country": "Argentina",
-    "iata": "MDQ",
-    "coordinates": [-37.9342,-57.5733],
-   },
    {
      "airport": " Amsterdam Airport Schiphol",
      "place": "Haarlemmermeer, North Holland",
