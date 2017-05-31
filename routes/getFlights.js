@@ -6,7 +6,15 @@ request.get({
   headers: "application/json"
 }, function(err, response, body) {
   skyScan = JSON.parse(body);
-  console.log(skyScan);
+  // console.log(skyScan);
+})
+
+request.get({
+  url: "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/USD/en-US/SAN/anywhere/anytime/?apiKey=sa302839589382574889837967187083",
+  headers: "application/json"
+}, function(err, response, body) {
+  skyScan = JSON.parse(body);
+  // console.log(skyScan);
 })
 
 request.post({
@@ -31,10 +39,10 @@ request.post({
     apikey: "sa822650917824688692115957251692"
   }},
   function(err, response, body) {
-    console.log("Making post request:");
+    // console.log("Making post request:");
     // skyScan = JSON.parse(response.headers);
-    console.log(response.headers);
-    console.log(body);
+    // console.log(response.headers);
+    // console.log(body);
   })
 
 // request.post({url:'http://service.com/upload', form: {key:'value'}}, function(err,httpResponse,body){ /* ... */ })
