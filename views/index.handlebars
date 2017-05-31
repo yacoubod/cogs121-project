@@ -71,7 +71,7 @@
           google.maps.event.addListener(marker, 'click', function(){
             infowindow.close(); // Close previously opened infowindow
             // generate URL to Google Flights for relevant search query
-            infowindow.setContent( "<div id='infowindow'>"+ pin.place +"</div>" + "<a target='_blank' href='https://www.google.com/flights/#search;f=" + "SAN" + ";t=" + pin.iata + ";d=" + "2017-07-01" + ";tt=o" + ";mp=" + pin.price + "'>Buy Tickets Now!</a>");
+            infowindow.setContent( "<div id='infowindow'>"+ pin.place +"</div>" + "<div>Est Price:" + pin.price + "</div>" + "<a target='_blank' href='https://www.google.com/flights/#search;f=" + "SAN" + ";t=" + pin.iata + ";d=" + "2017-07-01" + ";tt=o" + ";mp=" + pin.price + "'>Buy Tickets Now!</a>");
 
             infowindow.open(map, marker);
           });
