@@ -63,6 +63,7 @@
       window.eqfeed_callback = function(results) {
         for (var i = 0; i < results.airports.length; i++) {
           var coords = results.airports[i].geometry.coordinates;
+          var price = results.airports[i].properties.price;
           var latLng = new google.maps.LatLng(coords[1],coords[0]);
           var marker = new google.maps.Marker({
             position: latLng,
