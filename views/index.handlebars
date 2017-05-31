@@ -49,7 +49,8 @@
         var infowindow = new google.maps.InfoWindow(); /* SINGLE */
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 3,
-          center: new google.maps.LatLng(32.8800649,-117.2362022),
+          minZoom: 3,
+          center: new google.maps.LatLng(20,-28),
           mapTypeId: 'roadmap'
         });
 
@@ -60,16 +61,18 @@
         document.getElementsByTagName('head')[0].appendChild(script);
 
         function placeMarker(pin) {
-          var coords = pin.geometry.coordinates;
-          var price = pin.properties.price;
-          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+          var coords = pin.coordinates;
+          var price = pin.price;
+          var latLng = new google.maps.LatLng(coords[0],coords[1]);
           var marker = new google.maps.Marker({
             position: latLng,
             map: map
           });
           google.maps.event.addListener(marker, 'click', function(){
             infowindow.close(); // Close previously opened infowindow
-            infowindow.setContent( "<div id='infowindow'>"+ pin.properties.place +"</div>");
+            // generate URL to Google Flights for relevant search query
+            infowindow.setContent( "<div id='infowindow'>"+ pin.place +"</div>" + "<a target='_blank' href='https://www.google.com/flights/#search;f=" + "SAN" + ";t=" + pin.iata + ";d=" + "2017-07-01" + ";tt=o" + ";mp=" + pin.price + "'>Buy Tickets Now!</a>");
+
             infowindow.open(map, marker);
           });
         }
