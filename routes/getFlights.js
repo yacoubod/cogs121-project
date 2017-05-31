@@ -1,14 +1,13 @@
 var request = require('request');
 var skyScan;
 
-// request.get({
-//   url: "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/USD/en-US/SAN/anywhere/anytime/?apiKey=sa302839589382574889837967187083",
-//   headers: "application/json"
-// }, function(err, response, body) {
-//   skyScan = JSON.parse(body);
-//
-//   console.log(skyScan);
-// })
+request.get({
+  url: "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/USD/en-US/SAN/anywhere/anytime/?apiKey=sa302839589382574889837967187083",
+  headers: "application/json"
+}, function(err, response, body) {
+  skyScan = JSON.parse(body);
+  console.log(skyScan);
+})
 
 request.post({
   url: "http://partners.api.skyscanner.net/apiservices/pricing/v1.0",
@@ -29,7 +28,7 @@ request.post({
     adults: "1",
     children: "0",
     infants: "0",
-    apikey: "sa302839589382574889837967187083"
+    apikey: "sa822650917824688692115957251692"
   }},
   function(err, response, body) {
     console.log("Making post request:");
