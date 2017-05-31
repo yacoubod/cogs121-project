@@ -1,0 +1,30 @@
+eqfeed_callback(
+  {"airports":[{
+      "type":"Airport",
+      "properties":{
+        "place":"48km SSE of Pondaguitan, Philippines",
+        "time":1348176066,
+        "url":"http://myURL",
+        "price":"$100"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[126.3832,5.9775]},
+        "id":"usc000csx3"
+      },
+      {
+      "type":"Airport",
+      "properties":{
+        "place":"asdfasg",
+        "time":1348176066,
+        "url":"http://myURL",
+        "price":"$100"
+      },
+      "geometry":{
+        "type":"Point",
+        "coordinates":[150,50]},
+        "id":"usc000csx3"
+      },
+    ]
+  }
+);
